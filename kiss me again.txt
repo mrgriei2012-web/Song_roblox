@@ -1,3 +1,5 @@
+bpm = 150
+
 rest(0.5, bpm)
 keypress("2", x, bpm)
 rest(1, bpm)
