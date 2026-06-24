@@ -29,10 +29,10 @@ frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 frame.Active = true
 frame.Draggable = true
 
--- 2. Движок (функции)
-getgenv().play = function(note, bpm)
+-- 2. Движок (теперь понимает твои старые команды keypress и rest)
+getgenv().keypress = function(note, duration, bpm)
     VirtualInputManager:SendKeyEvent(true, note, false, mouse)
-    task.wait(60 / bpm)
+    task.wait(duration * (60 / bpm))
     VirtualInputManager:SendKeyEvent(false, note, false, mouse)
 end
 
@@ -40,13 +40,13 @@ getgenv().rest = function(duration, bpm)
     task.wait(duration * (60 / bpm))
 end
 
--- 3. Функция запуска с передачей окружения
+-- 3. Функция запуска (передаем окружение, чтобы скрипт видел функции)
 local function startSong(url)
     local success, songCode = pcall(function() return game:HttpGet(url, true) end)
     if success and songCode then
         local func, err = loadstring(songCode)
         if func then
-            setfenv(func, getfenv()) -- Файл песни видит функции play и rest
+            setfenv(func, getfenv()) 
             func()
         else
             warn("Ошибка кода: " .. tostring(err))
@@ -56,7 +56,7 @@ local function startSong(url)
     end
 end
 
--- 4. Кнопки с твоими ссылками
+-- 4. Кнопки песен
 local songs = {
     ["Rush E"] = "https://raw.githubusercontent.com/mrgriei2012-web/Song_roblox/main/rush%20e.txt",
     ["Kiss Me Again"] = "https://raw.githubusercontent.com/mrgriei2012-web/Song_roblox/refs/heads/main/kiss%20me%20again.txt"
