@@ -1,7 +1,7 @@
 -- Таблица твоих песен
 local Songs = {
     ["rush e"] = "https://pastebin.com/raw/ССЫЛКА_НА_ПЕРВУЮ",
-    ["kiss me again"] = "https://pastebin.com/raw/ССЫЛКА_НА_ВТОРУЮ",
+    ["kiss me again"] = "https://raw.githubusercontent.com/mrgriei2012-web/Song_roblox/refs/heads/main/kiss%20me%20again.txt",
 }
 
 -- Функция запуска (теперь она принимает ссылку)
